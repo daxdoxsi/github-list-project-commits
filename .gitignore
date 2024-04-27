@@ -1,6 +1,6 @@
 # Application
 web/app/plugins/*
-!web/app/plugins/dmm-github-commits
+!web/app/plugins/dmm_github_commits
 !web/app/plugins/.gitkeep
 web/app/mu-plugins/*/
 web/app/themes/twentytwentyfour/
