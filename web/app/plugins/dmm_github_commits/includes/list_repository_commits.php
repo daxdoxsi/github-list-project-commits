@@ -30,7 +30,7 @@ function dmm_github_commits_render_page() {
 	<div class="wrap">
 		<h1>GitHub Commits to the Repository <?=$repo?></h1>
 		<hr />
-		<p><?php
+		<?php
             	if ( is_array($data) || is_object($data) ) {
 
                     $output = '<table class="wp-list-table widefat fixed">';
@@ -75,9 +75,9 @@ function dmm_github_commits_render_page() {
 
                 }
                 else {
-	                echo $data;
+	                echo '<h3>'.$data.'</h3>';
                 }
-                ?></pre>
+                ?>
 	</div>
 	<?php
 }
