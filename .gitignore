@@ -1,5 +1,6 @@
 # Application
 web/app/plugins/*
+!web/app/plugins/dmm-github-commits
 !web/app/plugins/.gitkeep
 web/app/mu-plugins/*/
 web/app/themes/twentytwentyfour/
@@ -11,6 +12,9 @@ web/app/cache/*
 # WordPress
 web/wp
 web/.htaccess
+
+# Editor
+.idea
 
 # Logs
 *.log
