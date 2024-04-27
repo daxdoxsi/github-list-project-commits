@@ -14,7 +14,7 @@ web/wp
 web/.htaccess
 
 # Editor
-.idea
+.idea/
 
 # Logs
 *.log
