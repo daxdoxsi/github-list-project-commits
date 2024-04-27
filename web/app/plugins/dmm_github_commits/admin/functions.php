@@ -82,6 +82,10 @@ function dmm_github_commits_register_settings_section(){
     );
 }
 
+function dmm_github_commits_build_config_settings_section(){
+
+}
+
 function dmm_github_commits_build_username_field(){
     $current_value = get_option('dmm_github_commits_username','');
     ?>

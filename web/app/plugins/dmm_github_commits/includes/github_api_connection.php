@@ -2,9 +2,9 @@
 
 function dmm_github_commits_api_connection()
 {
-    $personalToken = 'rW1E28QHQuo/6siZJn5jd68AJ/kIgvUI1N3uFDwZ6fk=';
-    $user = 'daxdoxsi';
-    $repo = 'github-list-project-commits';
+    $token = get_option('dmm_github_commits_token','');
+    $user = get_option('dmm_github_commits_username','');
+    $repo = get_option('dmm_github_commits_repository','');
 
     // Define the URL of the REST API endpoint you want to read from
     $api_url = 'https://api.github.com/' . $user . '/' . $repo . '/commits';
@@ -14,7 +14,7 @@ function dmm_github_commits_api_connection()
         'timeout' => 20,
         'headers' => array(
             'Accept' => 'application/vnd.github.v3+json',
-            'Authorization' => 'Bearer ' . $personalToken,
+            'Authorization' => 'Bearer ' . $token,
             // Add any other headers if needed
         ),
         // Add any other request parameters such as 'method', 'body', 'cookies', 'sslverify', etc.
@@ -25,10 +25,15 @@ function dmm_github_commits_api_connection()
 
     // Check if the request was successful
     if (is_wp_error($response)) {
-        $error_message = $response->get_error_message();
+
+		// Getting error details
+		$error_message = $response->get_error_message();
         echo "Error: $error_message";
+		return false;
+
     } else {
-        // Retrieve the response body and decode it as JSON
+
+		// Retrieve the response body and decode it as JSON
         $response_body = wp_remote_retrieve_body($response);
         $data = json_decode($response_body);
 
@@ -37,11 +42,9 @@ function dmm_github_commits_api_connection()
 
             return false;
 
-        } else {
+        }
 
-            return $data;
-
-        } // if
+		return $data;
 
     }// if
 
