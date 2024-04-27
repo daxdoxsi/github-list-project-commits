@@ -8,6 +8,10 @@
  */
 
 if ( is_admin() ) {
+
     require_once( plugin_dir_path(__FILE__) . 'admin/functions.php');
+
+    add_action('admin_menu', 'dmm_github_commits_admin_menu_item');
+
 }
 
