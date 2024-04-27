@@ -7,7 +7,7 @@ function dmm_github_commits_api_connection()
     $repo = get_option('dmm_github_commits_repository','');
 
     // Define the URL of the REST API endpoint you want to read from
-    $api_url = 'https://api.github.com/' . $user . '/' . $repo . '/commits';
+    $api_url = 'https://api.github.com/repos/' . $user . '/' . $repo . '/commits';
 
     // Set up the arguments for the request
     $args = array(

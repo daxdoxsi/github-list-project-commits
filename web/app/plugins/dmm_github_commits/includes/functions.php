@@ -1,13 +1,14 @@
 <?php
 
 function dmm_github_commits_admin_menu_item(){
-    add_plugins_page(
-        'GitHub Commits List Settings',
-        'GitHub Commits List Settings',
+    add_options_page(
+    //add_plugins_page(
+        'GitHub API Params',
+        'GitHub API Parameters',
         'manage_options',
         'dmm_github_commits_settings',
         'dmm_github_commits_settings_page',
-      null
+        1
     );
 }
 

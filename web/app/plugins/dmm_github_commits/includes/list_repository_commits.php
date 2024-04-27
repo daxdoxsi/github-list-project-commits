@@ -25,12 +25,59 @@ function dmm_github_commits_create_page() {
 function dmm_github_commits_render_page() {
 	$repo = get_option('dmm_github_commits_repository','');
 	$data = dmm_github_commits_api_connection();
-	if ($data === false || trim($repo) == '') { $data = '<h3>Please set the configuration in order to establish a connection with GitHub API</h3>'; }
+	if ($data === false || isset($data->message) || trim($repo) == '') { $data = '<h3>Please set the configuration in order to establish a connection with GitHub API</h3>'; }
 	?>
 	<div class="wrap">
 		<h1>GitHub Commits to the Repository <?=$repo?></h1>
 		<hr />
-		<p><?=(is_array($data) || is_object($data) ? '<pre>'.print_r($data,true).'</pre>': $data )?></p>
+		<p><?php
+            	if ( is_array($data) || is_object($data) ) {
+
+                    $output = '<table class="wp-list-table widefat fixed">';
+		            $output .= '<thead><tr>';
+		            $output .= '<th>';
+		            $output .= '<strong>Commit</strong>';
+		            $output .= '</th>';
+		            $output .= '<th>';
+		            $output .= '<strong>Author</strong>';
+		            $output .= '</th>';
+		            $output .= '<th>';
+		            $output .= '<strong>Date</strong>';
+		            $output .= '</th>';
+		            $output .= '<th>';
+		            $output .= '<strong>Message</strong>';
+		            $output .= '</th>';
+		            $output .= '</tr></thead>';
+                    $output .= '<tbody>';
+
+                    foreach ($data as $commit) {
+
+	                    $output .= '<tr>';
+	                    $output .= '<td>';
+	                    $output .= $commit->sha;
+	                    $output .= '</td>';
+	                    $output .= '<td>';
+	                    $output .= $commit->commit->author->name;
+	                    $output .= '</td>';
+	                    $output .= '<td>';
+	                    $output .= $commit->commit->author->date;
+	                    $output .= '</td>';
+	                    $output .= '<td>';
+	                    $output .= $commit->commit->message;
+	                    $output .= '</td>';
+	                    $output .= '</tr>';
+
+                    }
+
+                    $output .= '</tbody>';
+                    $output .= '</table>';
+                    echo $output;
+
+                }
+                else {
+	                echo $data;
+                }
+                ?></pre>
 	</div>
 	<?php
 }

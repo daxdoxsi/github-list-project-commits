@@ -9,7 +9,7 @@
 
 if ( is_admin() ) {
 
-    require_once( plugin_dir_path(__FILE__) . 'admin/functions.php');
+    require_once( plugin_dir_path(__FILE__) . 'includes/functions.php');
 	require_once( plugin_dir_path(__FILE__) . 'includes/github_api_connection.php');
 	require_once( plugin_dir_path(__FILE__) . 'includes/list_repository_commits.php');
 
